@@ -20,11 +20,19 @@
          <tr><td><input id="amount" onchange="calculate();"></td>
             <td rowspan="8">
                 <canvas id="graph" width="400" height="250"></canvas></td></tr>
-
         <tr><td>Annual interest (%):</td>
-            <td></td></tr>
-        
-    </table>
+            <td><input id="apr" onchange="calculate();"></td></tr>
+        <tr><td>Repayment period (years):</td>
+            <td><input id="years" onchange="calculate();"></td> 
+        <tr><td>Zipcode (to find lenders):</td>
+            <td><input id="zipcode" onchange="calculate();"></td>
+        <tr><th scope="col">Approximate Payments:</th>
+            <td><button onclick="calculate();">Calculate</button></td></tr>
+        <tr><td>Monthly payment:</td>
+            <td>$<span class="output" id="payment"></span></td></tr>
+        <tr><td>Total payment:</td>
+            <td>$<span class="output" id="total"></span></td></tr>    
+        </table>
     
 </body>
 </html>

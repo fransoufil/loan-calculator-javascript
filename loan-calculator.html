@@ -7,18 +7,20 @@
     <title>JavaScript Loan Calculator</title>
     <style>
         .output { font-weight: bold;}
+        #body {background-color: rgb(107, 206, 112);}
         #payment { text-decoration: underline;}
         #graph { border: solid black 1px;}
-        th, td {vertical-align: top;}
+        th, td {vertical-align: top; font-size: 25px;}
     </style>
 </head>
-<body>
+<body id="body">
     <table>
         <tr><th scope="col">Enter Loan Data:</th>
          <td></td>
          <th scope="col">Loan Balance, Cumulative Equity, and Interest Payments</th></tr>
-         <tr><td><input id="amount" onchange="calculate();"></td>
-            <td rowspan="8">
+         <tr><td>Amount of the loan ($):</td>
+             <td><input id="amount" onchange="calculate();"></td>
+             <td rowspan="8">
                 <canvas id="graph" width="400" height="250"></canvas></td></tr>
         <tr><td>Annual interest (%):</td>
             <td><input id="apr" onchange="calculate();"></td></tr>
@@ -31,8 +33,28 @@
         <tr><td>Monthly payment:</td>
             <td>$<span class="output" id="payment"></span></td></tr>
         <tr><td>Total payment:</td>
-            <td>$<span class="output" id="total"></span></td></tr>    
+            <td>$<span class="output" id="total"></span></td></tr>
+        <tr><td>Total interest:</td>
+            <td>$<span class="output" id="totalinterest"></span></td></tr>
+        <tr><th scope="col">Sponsors:</th><td colspan=2>
+            Apply for your loan with one of these fine lenders:
+        <div id="lenders"></div></td></tr>        
         </table>
+
+        <script>
+            function calculate() {
+                var amount = document.getElementById("amount");
+                var apr = document.getElementById("apr");
+                var years = document.getElementById("years");
+                var zipcode = document.getElementById("zipcode");
+                var payment = document.getElementById("payment");
+                var total = document.getElementById("total");
+                var totalinterest = document.getElementById("totalinterest");
+
+
+            }
+            
+        </script>
     
 </body>
 </html>

@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Loan Calculator</title>
-    <style>
-        .output { font-weight: bold;}
-        #body {background-color: rgb(107, 206, 112);}
-        #payment { text-decoration: underline;}
-        #graph { border: solid black 1px; background-color: white;}
-        th, td {vertical-align: top; font-size: 25px;}
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
+   
 </head>
 <body id="body">
+    
     <table>
+        <h1>Loan Calculator Example Whit JavaScript</h1>
         <tr><th scope="col">Enter Loan Data:</th>
          <td></td>
          <th scope="col">Loan Balance, Cumulative Equity, and Interest Payments</th></tr>
          <tr><td>Amount of the loan ($):</td>
              <td><input id="amount" onchange="calculate();"></td>
              <td rowspan="8">
-                <canvas id="graph" width="400" height="250"></canvas></td></tr>
+                <canvas id="graph" width="600" height="250"></canvas></td></tr>
         <tr><td>Annual interest (%):</td>
             <td><input id="apr" onchange="calculate();"></td></tr>
         <tr><td>Repayment period (years):</td>
@@ -39,7 +37,7 @@
         <tr><th scope="col">Sponsors:</th><td colspan=2>
             Apply for your loan with one of these fine lenders:
         <div id="lenders"></div></td></tr>        
-        </table>
+    </table>
 
         <script>
             function calculate() {
@@ -51,7 +49,33 @@
                 var total = document.getElementById("total");
                 var totalinterest = document.getElementById("totalinterest");
 
+                var principal = parseFloat(amount.value);
+                var interest = parseFloat(apr.value)/100/12;
+                var payments = parseFloat(years.value)*12;
 
+                var x = Math.pow(1 + interest, payments);
+                var monthly = (principal*x*interest)/(x-1);
+
+                if (isFinite(monthly)) {
+                    payment.innerHTML = monthly.toFixed(2);
+                    total.innerHTML = (monthly*payments).toFixed(2);
+                    totalinterest.innerHTML = (monthly*payments-principal).toFixed(2);
+
+                    save(amount.value, apr.value, years.value, zipcode.value);
+
+                    try {//captura quaisquer erros que ocorram dentro dessas chaves
+                        getLenders(amount.value, apr.value, years.value, zipcode.value);
+                    } catch (e) {/*E ignora esses erros*/}
+
+                    chart(principal, interest, monthly, payments);
+
+        
+                } else {
+                    payment.innerHTML = "";
+                    total.innerHTML = "";
+                    totalinterest.innerHTML = "";
+                    chart(); //sem argumentos, apaga o gráfico
+                }
             }
             
         </script>

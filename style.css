@@ -1,5 +1,10 @@
 .output { font-weight: bold;}
 #body {background-color:gold;}
+
+/*
+#body {background-color:rgb(9, 255, 0);}
+*/
+
 #payment { text-decoration: underline;}
 #graph { border: solid black 1px; background-color:white ;}
 th, td {vertical-align: top; font-size: 25px;}
